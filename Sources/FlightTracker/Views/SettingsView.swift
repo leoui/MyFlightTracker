@@ -1,10 +1,12 @@
 // SettingsView.swift – Pengaturan aplikasi
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var scheduler = CheckScheduler.shared
+    @StateObject private var updater = AutoUpdater.shared
 
     // ── Data source ──
     @State private var useDemoMode: Bool  = UserDefaults.standard.bool(forKey: "use_demo_mode")
@@ -63,6 +65,7 @@ struct SettingsView: View {
                     dateRangeSection
                     intervalSection
                     notificationSection
+                    updateSection
                     technicalSection
                 }
                 .padding()
@@ -399,6 +402,85 @@ struct SettingsView: View {
                 .font(.caption2)
                 .foregroundStyle(.primary)
         }
+    }
+
+    // MARK: - Update
+
+    private var updateSection: some View {
+        GroupBox {
+            VStack(alignment: .leading, spacing: 12) {
+
+                // Status baris
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: updater.updateSuccess ? "checkmark.circle.fill" :
+                          updater.updateError != nil ? "xmark.circle.fill" : "arrow.down.circle.fill")
+                        .font(.title3)
+                        .foregroundStyle(updater.updateSuccess ? .green :
+                                         updater.updateError != nil ? .red : .blue)
+                        .frame(width: 28)
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Versi: **\(appVersion)**")
+                            .font(.subheadline)
+                        Text("Browse file .dmg terbaru dari GitHub Releases, lalu aplikasi akan update dan restart otomatis.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                // Progress/status message
+                if updater.isUpdating {
+                    HStack(spacing: 8) {
+                        ProgressView().scaleEffect(0.7)
+                        Text(updater.updateMessage)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                } else if updater.updateSuccess {
+                    Label(updater.updateMessage, systemImage: "checkmark.circle.fill")
+                        .font(.caption)
+                        .foregroundStyle(.green)
+                } else if let err = updater.updateError {
+                    Label(err, systemImage: "xmark.circle.fill")
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                // Tombol update
+                HStack(spacing: 10) {
+                    Button {
+                        updater.browseAndUpdate()
+                    } label: {
+                        Label(updater.isUpdating ? "Sedang update..." : "Browse & Update dari .dmg",
+                              systemImage: "arrow.down.app.fill")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.regular)
+                    .disabled(updater.isUpdating)
+
+                    Button {
+                        NSWorkspace.shared.open(
+                            URL(string: "https://github.com/leoui/MyFlightTracker/releases")!
+                        )
+                    } label: {
+                        Label("Lihat Releases", systemImage: "safari")
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.regular)
+                }
+            }
+        } label: {
+            Label("Update Aplikasi", systemImage: "arrow.down.app")
+                .font(.subheadline).fontWeight(.semibold)
+        }
+    }
+
+    private var appVersion: String {
+        let info = Bundle.main.infoDictionary
+        let version = info?["CFBundleShortVersionString"] as? String ?? "1.2.0"
+        let build   = info?["CFBundleVersion"] as? String ?? "1"
+        return "\(version) (\(build))"
     }
 
     // MARK: - Technical
