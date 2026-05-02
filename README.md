@@ -4,6 +4,18 @@ Aplikasi macOS untuk memantau harga tiket pesawat, mendeteksi harga terendah sec
 
 ---
 
+## ℹ️ Tentang
+
+**MyFlightTracker** adalah aplikasi macOS open-source yang membantu traveler Indonesia menemukan harga tiket pesawat terbaik. Aplikasi ini secara otomatis mengecek harga penerbangan secara berkala dan mengirim notifikasi macOS saat menemukan harga yang lebih rendah dari semua rekor harga sebelumnya.
+
+- 🎯 **Harga historis per rute + maskapai + kelas kabin** — tidak ada pencampuran data antar rute
+- 📊 **Pola harga** — identifikasi jam dan hari termurah untuk terbang
+- 🔔 **Notifikasi real-time** — langsung tahu saat ada harga terbaik
+- 🌐 **Data dari Google Flights** — harga terbaru langsung dari sumber
+- 🤖 **Anti-deteksi** — random delay, rotasi user-agent, human-like behavior agar tidak diblokir
+
+---
+
 ## 🚀 Fitur Utama
 
 | Fitur | Deskripsi |
