@@ -1,4 +1,4 @@
-// AddRouteView.swift – Form to add a new tracked route
+// AddRouteView.swift – Form to add a new tracked route with search/autocomplete
 
 import SwiftUI
 
@@ -6,8 +6,8 @@ struct AddRouteView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var dataStore = DataStore.shared
 
-    @State private var selectedOrigin: Airport = Airport.popular[0]
-    @State private var selectedDestination: Airport = Airport.popular[2]
+    @State private var selectedOrigin: Airport? = nil
+    @State private var selectedDestination: Airport? = nil
     @State private var selectedAirline: String = "ALL"
     @State private var selectedCabin: FlightOffer.CabinClass = .economy
     @State private var useThresholdAlert = false
@@ -37,16 +37,22 @@ struct AddRouteView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
 
-                    // Route section
+                    // Route section — search autocomplete
                     GroupBox {
-                        VStack(spacing: 12) {
-                            LabeledPicker(label: "🛫 Asal", selection: $selectedOrigin,
-                                          options: Airport.popular) { $0.city + " (\($0.iataCode))" }
+                        VStack(spacing: 14) {
+                            AirportSearchField(
+                                label: "🛫 Asal",
+                                placeholder: "Ketik kota, nama bandara, atau kode IATA...",
+                                selectedAirport: $selectedOrigin
+                            )
 
                             Divider()
 
-                            LabeledPicker(label: "🛬 Tujuan", selection: $selectedDestination,
-                                          options: Airport.popular) { $0.city + " (\($0.iataCode))" }
+                            AirportSearchField(
+                                label: "🛬 Tujuan",
+                                placeholder: "Ketik kota, nama bandara, atau kode IATA...",
+                                selectedAirport: $selectedDestination
+                            )
                         }
                     } label: {
                         Label("Rute Penerbangan", systemImage: "airplane")
@@ -101,7 +107,7 @@ struct AddRouteView: View {
                     }
 
                     // Validation hint
-                    if selectedOrigin.iataCode == selectedDestination.iataCode {
+                    if let o = selectedOrigin, let d = selectedDestination, o.iataCode == d.iataCode {
                         Label("Asal dan tujuan tidak boleh sama", systemImage: "exclamationmark.triangle")
                             .foregroundStyle(.orange)
                             .font(.caption)
@@ -126,22 +132,27 @@ struct AddRouteView: View {
                 }
                 .keyboardShortcut(.return)
                 .buttonStyle(.borderedProminent)
-                .disabled(selectedOrigin.iataCode == selectedDestination.iataCode)
+                .disabled(selectedOrigin == nil || selectedDestination == nil ||
+                          selectedOrigin?.iataCode == selectedDestination?.iataCode)
             }
             .padding()
             .background(.bar)
         }
-        .frame(width: 440, height: 520)
+        .frame(width: 480, height: 620)
     }
 
     private func save() {
-        guard selectedOrigin.iataCode != selectedDestination.iataCode else {
+        guard let origin = selectedOrigin, let dest = selectedDestination else {
+            error = "Pilih bandara asal dan tujuan."
+            return
+        }
+        guard origin.iataCode != dest.iataCode else {
             error = "Asal dan tujuan tidak boleh sama."
             return
         }
 
         // Check duplicate
-        let routeKey = "\(selectedOrigin.iataCode)-\(selectedDestination.iataCode)"
+        let routeKey = "\(origin.iataCode)-\(dest.iataCode)"
         let exists = dataStore.trackedRoutes.contains {
             $0.route.id == routeKey && $0.airline == selectedAirline && $0.cabinClass == selectedCabin
         }
@@ -154,7 +165,7 @@ struct AddRouteView: View {
             ? Double(thresholdAmount.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: ".", with: ""))
             : nil
 
-        let route = Route(origin: selectedOrigin, destination: selectedDestination)
+        let route = Route(origin: origin, destination: dest)
         let tracked = TrackedRoute(
             route: route,
             airline: selectedAirline,
@@ -169,62 +180,224 @@ struct AddRouteView: View {
     }
 }
 
-// MARK: - Helper sub-views
+// MARK: - AirportSearchField (autocomplete)
 
-struct LabeledPicker<T: Hashable>: View {
+struct AirportSearchField: View {
     let label: String
-    @Binding var selection: T
-    let options: [T]
-    let title: (T) -> String
+    let placeholder: String
+    @Binding var selectedAirport: Airport?
+
+    @State private var searchText: String = ""
+    @State private var isEditing: Bool = false
+    @State private var hoveredAirport: Airport? = nil
+
+    private var filteredAirports: [Airport] {
+        let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        guard !q.isEmpty else { return [] }
+
+        // Split into two sections: domestic first, then international
+        let domesticMatches = Airport.domestic.filter { matchesSearch($0, q) }
+        let intlMatches = Airport.international.filter { matchesSearch($0, q) }
+
+        // Limit to 8 results per section to keep dropdown compact
+        var results: [Airport] = []
+        results.append(contentsOf: domesticMatches.prefix(8))
+        if domesticMatches.count <= 8 {
+            results.append(contentsOf: intlMatches.prefix(8 - domesticMatches.count))
+        }
+        if domesticMatches.count > 8 {
+            results.append(contentsOf: intlMatches.prefix(max(0, 8 - domesticMatches.count)))
+        }
+
+        // Prioritize exact IATA code matches
+        let exactIATA = Airport.all.filter { $0.iataCode.lowercased() == q }
+        if let exact = exactIATA.first, !results.contains(where: { $0.iataCode == exact.iataCode }) {
+            results.insert(exact, at: 0)
+        }
+
+        // Remove duplicates while preserving order
+        var seen = Set<String>()
+        return results.filter { seen.insert($0.iataCode).inserted }.prefix(10).map { $0 }
+    }
+
+    private func matchesSearch(_ airport: Airport, _ q: String) -> Bool {
+        airport.iataCode.lowercased().contains(q) ||
+        airport.city.lowercased().contains(q) ||
+        airport.name.lowercased().contains(q) ||
+        airport.country.lowercased().contains(q)
+    }
+
+    // Whether we should show domestic/international section headers
+    private var hasDomestic: Bool { filteredAirports.contains { $0.country == "Indonesia" } }
+    private var hasInternational: Bool { filteredAirports.contains { $0.country != "Indonesia" } }
 
     var body: some View {
-        HStack {
-            Text(label)
-                .font(.subheadline)
-                .frame(width: 90, alignment: .leading)
-            Picker("", selection: $selection) {
-                ForEach(options, id: \.self) { opt in
-                    Text(title(opt)).tag(opt)
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text(label)
+                    .font(.subheadline)
+                    .frame(width: 70, alignment: .leading)
+
+                ZStack(alignment: .leading) {
+                    // Show selected airport chip or empty state
+                    if let selected = selectedAirport {
+                        HStack(spacing: 6) {
+                            Text("✈️ \(selected.city) (\(selected.iataCode))")
+                                .font(.subheadline)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(Color.accentColor.opacity(0.15))
+                                .clipShape(Capsule())
+                            Button(action: {
+                                withAnimation(.easeInOut(duration: 0.15)) {
+                                    selectedAirport = nil
+                                    searchText = ""
+                                }
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(.secondary)
+                                    .font(.caption)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+
+                    // Search field (always visible for editing)
+                    if selectedAirport == nil || isEditing {
+                        TextField(placeholder, text: $searchText, onEditingChanged: { editing in
+                            withAnimation(.easeInOut(duration: 0.15)) {
+                                isEditing = editing
+                            }
+                        })
+                        .textFieldStyle(.roundedBorder)
+                        .disableAutocorrection(true)
+                        .onChange(of: searchText) { _, _ in
+                            hoveredAirport = nil
+                        }
+                    } else {
+                        // Tap on chip area to re-open search
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                withAnimation {
+                                    isEditing = true
+                                    searchText = ""
+                                    selectedAirport = nil
+                                }
+                            }
+                    }
                 }
             }
-            .labelsHidden()
+
+            // Autocomplete dropdown
+            if isEditing && !searchText.trimmingCharacters(in: .whitespaces).isEmpty && !filteredAirports.isEmpty {
+                VStack(spacing: 0) {
+                    // Domestic section
+                    let domestic = filteredAirports.filter { $0.country == "Indonesia" }
+                    if !domestic.isEmpty {
+                        sectionHeader("🇮🇩 Domestik")
+                        ForEach(domestic) { airport in
+                            airportRow(airport)
+                        }
+                    }
+
+                    // International section
+                    let intl = filteredAirports.filter { $0.country != "Indonesia" }
+                    if !intl.isEmpty {
+                        if hasDomestic && hasInternational {
+                            Divider().padding(.vertical, 2)
+                        }
+                        sectionHeader("🌏 Internasional")
+                        ForEach(intl) { airport in
+                            airportRow(airport)
+                        }
+                    }
+                }
+                .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .shadow(color: .black.opacity(0.12), radius: 6, x: 0, y: 3)
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func sectionHeader(_ title: String) -> some View {
+        Text(title)
+            .font(.caption2)
+            .fontWeight(.semibold)
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 12)
+            .padding(.top, 6)
+            .padding(.bottom, 2)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    @ViewBuilder
+    private func airportRow(_ airport: Airport) -> some View {
+        let isHovered = hoveredAirport?.id == airport.id
+
+        Button(action: {
+            withAnimation(.easeInOut(duration: 0.15)) {
+                selectedAirport = airport
+                searchText = ""
+                isEditing = false
+            }
+        }) {
+            HStack {
+                Text(airport.iataCode)
+                    .font(.subheadline).fontWeight(.semibold)
+                    .frame(width: 40, alignment: .leading)
+                    .foregroundStyle(Color.accentColor)
+
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(airport.city)
+                        .font(.subheadline)
+                        .lineLimit(1)
+                    Text(airport.name)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+                Spacer()
+                Text(airport.country)
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(isHovered ? Color.accentColor.opacity(0.08) : Color.clear)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            hoveredAirport = hovering ? airport : (hoveredAirport?.id == airport.id ? nil : hoveredAirport)
         }
     }
 }
+
+// MARK: - LabeledAirlinePicker
 
 struct LabeledAirlinePicker: View {
     let label: String
     @Binding var selection: String
 
-    private let airlines: [(code: String, name: String)] = [
-        ("ALL", "Semua Maskapai"),
-        ("GA", "Garuda Indonesia"),
-        ("JT", "Lion Air"),
-        ("SJ", "Sriwijaya Air"),
-        ("ID", "Batik Air"),
-        ("IW", "Wings Air"),
-        ("IN", "Nam Air"),
-        ("QZ", "AirAsia Indonesia"),
-        ("SQ", "Singapore Airlines"),
-        ("MH", "Malaysia Airlines"),
-        ("EK", "Emirates"),
-        ("QR", "Qatar Airways"),
-    ]
-
     var body: some View {
         HStack {
             Text(label)
                 .font(.subheadline)
                 .frame(width: 90, alignment: .leading)
             Picker("", selection: $selection) {
-                ForEach(airlines, id: \.code) { a in
-                    Text(a.name).tag(a.code)
+                ForEach(Airline.popular, id: \.iataCode) { a in
+                    Text(a.name).tag(a.iataCode)
                 }
             }
             .labelsHidden()
         }
     }
 }
+
+// MARK: - LabeledCabinPicker
 
 struct LabeledCabinPicker: View {
     let label: String

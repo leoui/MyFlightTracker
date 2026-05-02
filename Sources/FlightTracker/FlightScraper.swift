@@ -46,25 +46,100 @@ enum ScraperError: LocalizedError {
 final class DemoFlightScraper: FlightScraperProtocol {
 
     private let basePrices: [String: Double] = [
+        // Domestic – Jawa
         "CGK-DPS": 1_400_000, "DPS-CGK": 1_400_000,
         "CGK-SUB": 850_000,   "SUB-CGK": 850_000,
         "CGK-UPG": 1_300_000, "UPG-CGK": 1_300_000,
         "CGK-KNO": 1_050_000, "KNO-CGK": 1_050_000,
         "CGK-BPN": 1_200_000, "BPN-CGK": 1_200_000,
         "CGK-JOG": 600_000,   "JOG-CGK": 600_000,
+        "CGK-YIA": 620_000,   "YIA-CGK": 620_000,
         "CGK-SOC": 650_000,   "SOC-CGK": 650_000,
         "CGK-PLM": 700_000,   "PLM-CGK": 700_000,
         "CGK-PDG": 800_000,   "PDG-CGK": 800_000,
+        "CGK-SRG": 550_000,   "SRG-CGK": 550_000,
+        "CGK-BDO": 500_000,   "BDO-CGK": 500_000,
+        "CGK-HLP": 450_000,   "HLP-CGK": 450_000,
+        "CGK-MLG": 780_000,   "MLG-CGK": 780_000,
+        "CGK-BTH": 950_000,   "BTH-CGK": 950_000,
+        "CGK-TNJ": 1_000_000, "TNJ-CGK": 1_000_000,
+        "CGK-TKG": 550_000,   "TKG-CGK": 550_000,
+        "CGK-BKS": 650_000,   "BKS-CGK": 650_000,
+        "CGK-PGK": 720_000,   "PGK-CGK": 720_000,
+        "CGK-BTJ": 1_200_000, "BTJ-CGK": 1_200_000,
+        "CGK-PKU": 900_000,   "PKU-CGK": 900_000,
+        "CGK-BDJ": 1_100_000, "BDJ-CGK": 1_100_000,
+        "CGK-PNK": 1_150_000, "PNK-CGK": 1_150_000,
+        "CGK-MDC": 1_800_000, "MDC-CGK": 1_800_000,
+        "CGK-AMQ": 2_000_000, "AMQ-CGK": 2_000_000,
+        "CGK-DJJ": 3_500_000, "DJJ-CGK": 3_500_000,
+        "CGK-SOQ": 2_800_000, "SOQ-CGK": 2_800_000,
+        // Domestic – inter-island
+        "DPS-SUB": 450_000,   "SUB-DPS": 450_000,
+        "DPS-UPG": 1_000_000, "UPG-DPS": 1_000_000,
+        "DPS-SIN": 1_200_000, "SIN-DPS": 1_200_000,
+        "DPS-KUL": 1_000_000, "KUL-DPS": 1_000_000,
+        "DPS-SYD": 2_800_000, "SYD-DPS": 2_800_000,
+        "SUB-UPG": 900_000,   "UPG-SUB": 900_000,
+        "SUB-MDC": 1_400_000, "MDC-SUB": 1_400_000,
+        "KNO-SIN": 1_100_000, "SIN-KNO": 1_100_000,
+        "KNO-KUL": 900_000,   "KUL-KNO": 900_000,
+        "BPN-BDJ": 600_000,   "BDJ-BPN": 600_000,
+        "UPG-MDC": 700_000,   "MDC-UPG": 700_000,
+        "UPG-KDI": 550_000,   "KDI-UPG": 550_000,
+        "UPG-PLW": 600_000,   "PLW-UPG": 600_000,
+        // International – Asia Tenggara
         "CGK-SIN": 1_600_000, "SIN-CGK": 1_600_000,
         "CGK-KUL": 1_300_000, "KUL-CGK": 1_300_000,
-        "SUB-DPS": 450_000,   "DPS-SUB": 450_000,
+        "CGK-BKK": 1_800_000, "BKK-CGK": 1_800_000,
+        "CGK-SGN": 2_000_000, "SGN-CGK": 2_000_000,
+        "CGK-HAN": 2_200_000, "HAN-CGK": 2_200_000,
+        "CGK-MNL": 2_100_000, "MNL-CGK": 2_100_000,
+        "CGK-PNH": 2_300_000, "PNH-CGK": 2_300_000,
+        "CGK-RGN": 2_500_000, "RGN-CGK": 2_500_000,
+        "SIN-BKK": 800_000,   "BKK-SIN": 800_000,
+        "SIN-KUL": 400_000,   "KUL-SIN": 400_000,
+        // International – Asia Timur
+        "CGK-HKG": 3_000_000, "HKG-CGK": 3_000_000,
+        "CGK-NRT": 5_500_000, "NRT-CGK": 5_500_000,
+        "CGK-HND": 5_600_000, "HND-CGK": 5_600_000,
+        "CGK-KIX": 5_200_000, "KIX-CGK": 5_200_000,
+        "CGK-ICN": 4_800_000, "ICN-CGK": 4_800_000,
+        "CGK-TPE": 3_800_000, "TPE-CGK": 3_800_000,
+        "CGK-PVG": 4_000_000, "PVG-CGK": 4_000_000,
+        "CGK-PEK": 4_200_000, "PEK-CGK": 4_200_000,
+        "CGK-CAN": 3_500_000, "CAN-CGK": 3_500_000,
+        // International – Timur Tengah
+        "CGK-DXB": 5_000_000, "DXB-CGK": 5_000_000,
+        "CGK-AUH": 4_800_000, "AUH-CGK": 4_800_000,
+        "CGK-DOH": 4_500_000, "DOH-CGK": 4_500_000,
+        "CGK-IST": 6_000_000, "IST-CGK": 6_000_000,
+        "CGK-JED": 7_000_000, "JED-CGK": 7_000_000,
+        // International – Oceania & Eropa
+        "CGK-SYD": 4_500_000, "SYD-CGK": 4_500_000,
+        "CGK-MEL": 4_600_000, "MEL-CGK": 4_600_000,
+        "CGK-PER": 3_800_000, "PER-CGK": 3_800_000,
+        "CGK-AKL": 5_500_000, "AKL-CGK": 5_500_000,
+        "CGK-LHR": 9_000_000, "LHR-CGK": 9_000_000,
+        "CGK-CDG": 8_500_000, "CDG-CGK": 8_500_000,
+        "CGK-FRA": 8_000_000, "FRA-CGK": 8_000_000,
+        "CGK-AMS": 8_200_000, "AMS-CGK": 8_200_000,
+        "CGK-DEL": 4_500_000, "DEL-CGK": 4_500_000,
+        "CGK-BOM": 4_800_000, "BOM-CGK": 4_800_000,
     ]
 
     private let airlineMult: [String: Double] = [
         "GA": 1.40, "QG": 1.10, "ID": 1.15,
         "JT": 0.88, "QZ": 0.87, "SJ": 0.92,
-        "IW": 0.82, "TN": 0.85, "IN": 0.83,
+        "IW": 0.82, "TN": 0.85, "IN": 0.83, "MV": 0.80,
         "SQ": 2.30, "MH": 1.55, "EK": 3.60, "QR": 3.20,
+        "TR": 1.20, "AK": 0.90, "TG": 1.80, "FD": 1.10,
+        "VN": 1.60, "PR": 1.45, "CX": 2.10, "BL": 0.95,
+        "JL": 2.80, "NH": 2.90, "KE": 2.60, "OZ": 2.40,
+        "MU": 2.00, "CA": 2.10, "CZ": 1.90, "BR": 2.30, "CI": 2.20,
+        "EY": 3.40, "TK": 2.50, "SV": 2.70,
+        "BA": 3.50, "LH": 3.30, "AF": 3.10, "KL": 3.00,
+        "QF": 2.80, "NZ": 2.90,
     ]
 
     private let hourMult: [Int: Double] = [
@@ -92,7 +167,7 @@ final class DemoFlightScraper: FlightScraperProtocol {
         let wMult = weekdayMult[weekday] ?? 1.0
 
         let targetAirlines: [String] = airline == "ALL"
-            ? Array(["GA", "JT", "QG", "QZ", "ID", "TN"].shuffled().prefix(5))
+            ? Array(["GA", "JT", "QG", "QZ", "ID", "TN", "SJ", "IW", "IN", "TR", "MH", "SQ"].shuffled().prefix(5))
             : [airline]
 
         var offers: [FlightOffer] = []
