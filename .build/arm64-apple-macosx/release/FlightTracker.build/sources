@@ -1,0 +1,13 @@
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/CheckScheduler.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/DataStore.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightScraper.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightTrackerApp.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/GoogleFlightsScraper.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/MenuBarWidget.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Models.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AddRouteView.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AlertsHistoryView.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/MainView.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/PriceChartView.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/RouteDetailView.swift
+/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/SettingsView.swift

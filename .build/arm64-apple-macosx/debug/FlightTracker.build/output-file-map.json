@@ -1,0 +1,89 @@
+{
+  "": {
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/primary.swiftdeps"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/CheckScheduler.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/DataStore.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightScraper.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightTrackerApp.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/MenuBarWidget.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Models.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AddRouteView.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AlertsHistoryView.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/MainView.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/PriceChartView.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/RouteDetailView.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView.dia"
+  },
+  "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/SettingsView.swift": {
+    "dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView.d",
+    "object": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView.swift.o",
+    "swiftmodule": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView.swiftdeps",
+    "diagnostics": "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView.dia"
+  }
+}

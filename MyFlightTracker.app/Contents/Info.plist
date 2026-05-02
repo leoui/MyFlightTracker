@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>FlightTracker</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.yvonneivory.myflighttracker</string>
+    <key>CFBundleName</key>
+    <string>MyFlightTracker</string>
+    <key>CFBundleDisplayName</key>
+    <string>MyFlightTracker</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleIconFile</key>
+    <string>MyFlightTracker</string>
+    <key>CFBundleIconName</key>
+    <string>MyFlightTracker</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSSupportsAutomaticGraphicsSwitching</key>
+    <true/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSUserNotificationsUsageDescription</key>
+    <string>MyFlightTracker mengirim notifikasi saat harga tiket mencapai titik terendah baru.</string>
+    <key>LSUIElement</key>
+    <false/>
+    <key>LSBackgroundOnly</key>
+    <false/>
+</dict>
+</plist>

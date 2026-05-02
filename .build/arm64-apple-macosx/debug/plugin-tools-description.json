@@ -1,0 +1,452 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.FlightTracker-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "fileList" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/sources",
+      "importPath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/CheckScheduler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/DataStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightScraper.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightTrackerApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/MenuBarWidget.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AddRouteView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AlertsHistoryView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/MainView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/PriceChartView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/RouteDetailView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "FlightTracker",
+      "moduleOutputPath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/Modules/FlightTracker.swiftmodule",
+      "objects" : [
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView.swift.o",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j12",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "FlightTracker_main",
+        "-swift-version",
+        "5",
+        "-enable-experimental-feature",
+        "StrictConcurrency",
+        "-I",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-L",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-plugin-path",
+        "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "flighttracker"
+      ],
+      "outputFileMapPath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/Modules/FlightTracker.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/CheckScheduler.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/DataStore.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightScraper.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightTrackerApp.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/MenuBarWidget.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Models.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AddRouteView.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AlertsHistoryView.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/MainView.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/PriceChartView.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/RouteDetailView.swift",
+        "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/SettingsView.swift"
+      ],
+      "tempsPath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "FlightTracker" : [
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "-module-name",
+      "FlightTracker",
+      "-package-name",
+      "flighttracker",
+      "-c",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/CheckScheduler.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/DataStore.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightScraper.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightTrackerApp.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/MenuBarWidget.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Models.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AddRouteView.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AlertsHistoryView.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/MainView.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/PriceChartView.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/RouteDetailView.swift",
+      "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/SettingsView.swift",
+      "-I",
+      "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j12",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "FlightTracker_main",
+      "-swift-version",
+      "5",
+      "-enable-experimental-feature",
+      "StrictConcurrency",
+      "-I",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-L",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-plugin-path",
+      "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "flighttracker",
+      "-driver-use-frontend-path",
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "FlightTracker" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker-entitlement.plist"
+    },
+    "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/CheckScheduler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/DataStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightScraper.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/FlightTrackerApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/MenuBarWidget.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AddRouteView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/AlertsHistoryView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/MainView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/PriceChartView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/RouteDetailView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/Sources/FlightTracker/Views/SettingsView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/sources"
+    },
+    "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AddRouteView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/AlertsHistoryView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/CheckScheduler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/DataStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightScraper.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/FlightTrackerApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MainView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/MenuBarWidget.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/PriceChartView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/RouteDetailView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.build/SettingsView.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/FlightTracker.product/Objects.LinkFileList"
+    },
+    "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/yvonneivory/FlightTracker/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+    }
+  }
+}

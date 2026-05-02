@@ -1,0 +1,8 @@
+.build/
+MyFlightTracker.app/
+MyFlightTracker.dmg
+MyFlightTracker.icns
+MyFlightTracker.iconset/
+scraper.py.tmp
+*.swp
+.DS_Store
