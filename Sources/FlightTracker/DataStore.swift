@@ -154,7 +154,9 @@ final class DataStore: ObservableObject {
             avgPriceByWeekday: avgByWeekday,
             lowestEver: records.map(\.price).min() ?? 0,
             highestEver: records.map(\.price).max() ?? 0,
-            sampleCount: records.count
+            sampleCount: records.count,
+            lowestRecord: records.min(by: { $0.price < $1.price }),
+            highestRecord: records.max(by: { $0.price < $1.price })
         )
     }
 

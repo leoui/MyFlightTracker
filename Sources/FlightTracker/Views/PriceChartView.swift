@@ -117,10 +117,30 @@ struct PricePatternView: View {
                 PatternCard(
                     title: "Harga Terendah",
                     value: formatIDRShort(pattern.lowestEver),
-                    subtitle: "\(pattern.sampleCount) data",
+                    subtitle: lowestPriceDetail,
                     color: .purple,
                     icon: "tag.fill"
                 )
+            }
+
+            // Lowest & highest detail card
+            if pattern.lowestRecord != nil || pattern.highestRecord != nil {
+                VStack(spacing: 8) {
+                    if let rec = pattern.lowestRecord {
+                        PriceRecordDetailCard(
+                            label: "Harga Terendah yang Pernah Tercatat",
+                            record: rec,
+                            color: .green
+                        )
+                    }
+                    if let rec = pattern.highestRecord {
+                        PriceRecordDetailCard(
+                            label: "Harga Tertinggi yang Pernah Tercatat",
+                            record: rec,
+                            color: .red
+                        )
+                    }
+                }
             }
 
             // Hour heatmap
@@ -213,6 +233,28 @@ struct PricePatternView: View {
         return String(format: "%.0fRb", value / 1_000)
     }
 
+    private var lowestPriceDetail: String {
+        guard let rec = pattern.lowestRecord else { return "\(pattern.sampleCount) data" }
+        let df = DateFormatter()
+        df.dateFormat = "d MMM yyyy"
+        df.locale = Locale(identifier: "id_ID")
+        let dateStr = df.string(from: rec.departureDate)
+        let timeStr = String(format: "%02d:%02d", rec.departureHour,
+                             Calendar.current.component(.minute, from: rec.departureDate))
+        return "\(dateStr) • \(rec.airline) \(rec.flightNumber) • \(timeStr)"
+    }
+
+    private var highestPriceDetail: String {
+        guard let rec = pattern.highestRecord else { return "\(pattern.sampleCount) data" }
+        let df = DateFormatter()
+        df.dateFormat = "d MMM yyyy"
+        df.locale = Locale(identifier: "id_ID")
+        let dateStr = df.string(from: rec.departureDate)
+        let timeStr = String(format: "%02d:%02d", rec.departureHour,
+                             Calendar.current.component(.minute, from: rec.departureDate))
+        return "\(dateStr) • \(rec.airline) \(rec.flightNumber) • \(timeStr)"
+    }
+
     private func hourCategory(_ hour: Int) -> String {
         switch hour {
         case 0...5:   return "Tengah Malam"
@@ -256,6 +298,8 @@ struct PatternCard: View {
             Text(subtitle)
                 .font(.caption2)
                 .foregroundStyle(.secondary)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(10)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -265,5 +309,76 @@ struct PatternCard: View {
             RoundedRectangle(cornerRadius: 8)
                 .strokeBorder(color.opacity(0.2), lineWidth: 1)
         )
+    }
+}
+
+// MARK: - Price Record Detail Card
+
+struct PriceRecordDetailCard: View {
+    let label: String
+    let record: PriceRecord
+    let color: Color
+
+    private var df: DateFormatter {
+        let f = DateFormatter()
+        f.dateFormat = "EEEE, d MMMM yyyy"
+        f.locale = Locale(identifier: "id_ID")
+        return f
+    }
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: color == .green ? "trophy.fill" : "chart.line.uptrend.xyaxis")
+                .font(.title3)
+                .foregroundStyle(color)
+                .frame(width: 28)
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text(label)
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(color)
+
+                Text(formatIDR(record.price))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundStyle(color)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 4) {
+                        Label(record.flightNumber, systemImage: "airplane")
+                            .font(.caption2)
+                        Text("(\(record.airline))")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                    Label(df.string(from: record.departureDate), systemImage: "calendar")
+                        .font(.caption2)
+                    Label(String(format: "Berangkat %02d:%02d", record.departureHour,
+                                 Calendar.current.component(.minute, from: record.departureDate)),
+                          systemImage: "clock")
+                        .font(.caption2)
+                    Label(record.departureWeekday.weekdayShortName, systemImage: "calendar.day.timeline.left")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+                .foregroundStyle(.secondary)
+            }
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(color.opacity(0.06))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .strokeBorder(color.opacity(0.25), lineWidth: 1)
+        )
+    }
+
+    private func formatIDR(_ value: Double) -> String {
+        let f = NumberFormatter()
+        f.numberStyle = .currency
+        f.locale = Locale(identifier: "id_ID")
+        f.maximumFractionDigits = 0
+        return f.string(from: NSNumber(value: value)) ?? "Rp\(Int(value))"
     }
 }

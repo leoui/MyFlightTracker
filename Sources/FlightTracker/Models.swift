@@ -280,6 +280,10 @@ struct PricePattern: Identifiable {
     let lowestEver: Double
     let highestEver: Double
     let sampleCount: Int
+
+    // Detail record for lowest & highest price
+    let lowestRecord: PriceRecord?   // full record with date, airline, flight number
+    let highestRecord: PriceRecord?  // full record with date, airline, flight number
 }
 
 // MARK: - Tracked Route (user config)

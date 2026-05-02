@@ -208,11 +208,22 @@ struct RouteDetailView: View {
 
     private var statsGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
-            StatCard(title: "Terendah", value: formatIDR(records.map(\.price).min() ?? 0), color: .green)
-            StatCard(title: "Tertinggi", value: formatIDR(records.map(\.price).max() ?? 0), color: .red)
-            StatCard(title: "Rata-rata", value: formatIDR(records.map(\.price).reduce(0,+) / Double(records.count)), color: .blue)
-            StatCard(title: "Total Cek", value: "\(records.count)", color: .purple)
+            StatCard(title: "Terendah", value: formatIDR(records.map(\.price).min() ?? 0), color: .green, subtitle: lowestRecordDetail)
+            StatCard(title: "Tertinggi", value: formatIDR(records.map(\.price).max() ?? 0), color: .red, subtitle: highestRecordDetail)
+            StatCard(title: "Rata-rata", value: formatIDR(records.map(\.price).reduce(0,+) / Double(records.count)), color: .blue, subtitle: "\(records.count) data")
+            StatCard(title: "Total Cek", value: "\(records.count)", color: .purple, subtitle: "seluruh data")
         }
+    }
+
+    private var lowestRecordDetail: String {
+        guard let rec = records.min(by: { $0.price < $1.price }) else { return "-" }
+        let df = DateFormatter(); df.dateFormat = "d MMM yyyy"; df.locale = Locale(identifier: "id_ID")
+        return "\(df.string(from: rec.departureDate)) • \(rec.airline)"
+    }
+    private var highestRecordDetail: String {
+        guard let rec = records.max(by: { $0.price < $1.price }) else { return "-" }
+        let df = DateFormatter(); df.dateFormat = "d MMM yyyy"; df.locale = Locale(identifier: "id_ID")
+        return "\(df.string(from: rec.departureDate)) • \(rec.airline)"
     }
 
     private var historyTable: some View {
@@ -224,12 +235,13 @@ struct RouteDetailView: View {
 
             // Header
             HStack {
-                Text("Dicek").font(.caption2).foregroundStyle(.secondary).frame(width: 80, alignment: .leading)
-                Text("Maskapai").font(.caption2).foregroundStyle(.secondary).frame(width: 80, alignment: .leading)
-                Text("Penerbangan").font(.caption2).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
+                Text("Dicek").font(.caption2).foregroundStyle(.secondary).frame(width: 70, alignment: .leading)
+                Text("Berangkat").font(.caption2).foregroundStyle(.secondary).frame(width: 70, alignment: .leading)
+                Text("Maskapai").font(.caption2).foregroundStyle(.secondary).frame(width: 70, alignment: .leading)
+                Text("Penerb.").font(.caption2).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
                 Text("Jam").font(.caption2).foregroundStyle(.secondary).frame(width: 40, alignment: .center)
                 Text("Hari").font(.caption2).foregroundStyle(.secondary).frame(width: 40, alignment: .center)
-                Text("Harga").font(.caption2).foregroundStyle(.secondary).frame(width: 90, alignment: .trailing)
+                Text("Harga").font(.caption2).foregroundStyle(.secondary).frame(width: 85, alignment: .trailing)
                 Text("").frame(width: 16)
             }
             .padding(.vertical, 4)
@@ -241,10 +253,15 @@ struct RouteDetailView: View {
                     Text(record.checkedAt.formatted(.dateTime.month(.abbreviated).day().hour().minute()))
                         .font(.caption2)
                         .foregroundStyle(.secondary)
-                        .frame(width: 80, alignment: .leading)
+                        .frame(width: 70, alignment: .leading)
+                    Text(record.departureDate.formatted(.dateTime.month(.abbreviated).day()))
+                        .font(.caption2)
+                        .foregroundStyle(record.isLowest ? .green : .secondary)
+                        .fontWeight(record.isLowest ? .semibold : .regular)
+                        .frame(width: 70, alignment: .leading)
                     Text(record.airline)
                         .font(.caption2)
-                        .frame(width: 80, alignment: .leading)
+                        .frame(width: 70, alignment: .leading)
                     Text(record.flightNumber)
                         .font(.caption2)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -258,7 +275,7 @@ struct RouteDetailView: View {
                         .font(.caption2)
                         .fontWeight(record.isLowest ? .bold : .regular)
                         .foregroundStyle(record.isLowest ? .green : .primary)
-                        .frame(width: 90, alignment: .trailing)
+                        .frame(width: 85, alignment: .trailing)
                     Image(systemName: record.isLowest ? "star.fill" : "")
                         .font(.caption2)
                         .foregroundStyle(.yellow)
@@ -490,6 +507,7 @@ struct StatCard: View {
     let title: String
     let value: String
     let color: Color
+    var subtitle: String = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -502,6 +520,12 @@ struct StatCard: View {
                 .foregroundStyle(color)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
+            if !subtitle.isEmpty {
+                Text(subtitle)
+                    .font(.system(size: 8))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
         }
         .padding(8)
         .frame(maxWidth: .infinity, alignment: .leading)
